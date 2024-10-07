@@ -7,10 +7,8 @@ const userRoutes = require('./routes/user.api.js');
 const taskRoutes = require('./routes/task.api.js');
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log('MongoDB connected'))
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
 app.use(express.json());
