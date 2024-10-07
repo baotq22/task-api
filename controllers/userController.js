@@ -2,7 +2,7 @@ const userSchema = require("../models/userSchema");
 
 const userController = {}
 
-userController.createUser = async (res, req, next) => {
+userController.createUser = async (req, res, next) => {
   try {
     const { name } = req.body;
     const newUser = new userSchema({ name });
@@ -13,7 +13,7 @@ userController.createUser = async (res, req, next) => {
   }
 }
 
-userController.getUsers = async (res, req, next) => {
+userController.getUsers = async (req, res, next) => {
   try {
     const users = await userSchema.find(req.query);
     res.json(users);
@@ -22,7 +22,7 @@ userController.getUsers = async (res, req, next) => {
   }
 }
 
-userController.getUsersById = async (res, req, next) => {
+userController.getUsersById = async (req, res, next) => {
   try {
     const user = await userSchema.findById(req.params.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
