@@ -2,7 +2,7 @@ const express = require('express');
 const { body, param } = require('express-validator');
 const User = require('../models/userSchema');
 const { validate } = require('../middlewares/validate');
-const { getUsers, createUser, getUsersById } = require('../controllers/userController');
+const { getUsers, createUser, getUsersById, getAllTasksOfUser } = require('../controllers/userController');
 
 const router = express.Router();
 
@@ -20,5 +20,7 @@ router.get('/:id', [
   param('id').isMongoId().withMessage('Invalid User ID'),
   validate
 ], getUsersById);
+
+router.get('/:id/tasks', getAllTasksOfUser);
 
 module.exports = router;
